@@ -28,7 +28,7 @@ const Posts=()=>{
             {
                 posts && posts.length > 0 ? posts.map(post =>(
                     <Grid key={post._id}item lg={3} sm={4} xs={12}>
-                        <Link to={`details/${post._id}`} style={{textDecoration:'none',color:'inherit'}}>
+                        <Link to={`/details/${post._id}`} style={{textDecoration:'none',color:'inherit'}}>
                         <Post post={post} />
                         </Link>
                     </Grid>
