@@ -22,7 +22,7 @@ const Image=styled('img')({
 });
 
 const Heading=styled(Typography)`
-    font-sixe:30px;   
+    font-size:30px;   
     font-weight:600;
     text-align:center;
     margin:50px 0 10px 0;
