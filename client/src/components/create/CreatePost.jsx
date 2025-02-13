@@ -95,13 +95,14 @@ const CreatePost=()=>{
       
         // Also update categories and username.
         // It’s better to update them separately or inside a setPost call if they depend on the file upload.
-        setPost(prevPost => ({
-          ...prevPost,
-          categories: location.search?.split('=')[1] || 'All',
-          username: account.username,
-        }));
-      }, [file]);
-      
+       }, [file]);
+   useEffect(() => {
+     setPost(prevPost => ({
+    ...prevPost,
+    categories: location.search?.split('=')[1] || 'All',
+    username: account.username
+  }));
+}, [account.username, location.search]);
     // useEffect(()=>{
     //     const getImage =async()=>{
     //         if(file){
