@@ -52,7 +52,7 @@ const Description=styled(Typography)`
 `
 
 const DetailView=()=>{
-    const[post,setPost]=useState([]);
+    const[post,setPost]=useState({});
 
     const { id }=useParams();
     const{account}=useContext(DataContext);
