@@ -10,7 +10,7 @@ const conn=mongoose.connection;
 
 conn.once('open',()=>{
     gridfsBucket=new mongoose.mongo.GridFSBucket(conn.db,{
-        bucketName:'fs'
+        bucketName:'photos'
     });
     gfs=grid(conn.db,mongoose.mongo);
     gfs.collection('fs');
