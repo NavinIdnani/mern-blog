@@ -2,7 +2,7 @@
 import grid from 'gridfs-stream';
 import mongoose from 'mongoose';
 
-const url='https://mern-blog-ntal.onrender.com'
+const url=''
 
 let gfs,gridfsBucket;
 
