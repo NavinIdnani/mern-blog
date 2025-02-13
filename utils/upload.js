@@ -2,16 +2,18 @@ import multer from 'multer';
 
 import { GridFsStorage } from 'multer-gridfs-storage';
 import dotenv from 'dotenv';
-import mongoose from 'mongoose';
+
 
 dotenv.config();
 
 const username=process.env.DB_USERNAME;
 const password= process.env.DB_PASSWORD;
 
+const mongoUri=process.env.MONGODB_URI;
+
 const storage =new GridFsStorage({
-    db: mongoose.connection.db,
     // options:{useNewUrlParser:true},
+    url:mongoUri,
     file:(request,file) =>{
         const match=["image/png","image/jpg"];
 
