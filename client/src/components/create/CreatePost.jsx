@@ -104,7 +104,6 @@ const CreatePost=()=>{
         }));
       }, [file]);
 
-
     const handleChange=(e)=>{
         setPost({ ...post,[e.target.name]:e.target.value});
     }
