@@ -71,60 +71,38 @@ const CreatePost=()=>{
 
 
 
- useEffect(() => {
-        const getImage = async () => { 
-            if(file) {
-                const data = new FormData();
-                data.append("name", file.name);
-                data.append("file", file);
-                
-                const response = await API.uploadFile(data);
-                post.picture = response.data;
-            }
-        }
-        getImage();
-        post.categories = location.search?.split('=')[1] || 'All';
-        post.username = account.username;
-    }, [file])
- 
+useEffect(() => {
+  const getImage = async () => {
+    if (file) {
+      const data = new FormData();
+      data.append("name", file.name);
+      data.append("file", file);
+      
+      try {
+        const response = await API.uploadFile(data);
+        setPost(prevPost => ({
+          ...prevPost,
+          picture: response.data
+        }));
+      } catch (error) {
+        console.error("File upload failed:", error);
+      }
+    }
+  };
+
+  getImage();
+
+  // Update categories and username using setPost:
+  setPost(prevPost => ({
+    ...prevPost,
+    categories: location.search?.split('=')[1] || 'All',
+    username: account.username,
+  }));
+}, [file, account.username, location.search]);
 
 
  
-//     useEffect(() => {
-//         const getImage = async () => {
-//           if (file) {
-//             const data = new FormData();
-//             data.append("name", file.name);
-//             data.append("file", file);
-      
-//             try {
-//               const response = await API.uploadFile(data);
-//               console.log("Upload response:", response);
-      
-//               // Update state with the new image URL
-//               setPost(prevPost => ({
-//                 ...prevPost,
-//                 picture: response.data, // assuming response.data is the image URL
-//               }));
-//             } catch (error) {
-//               console.error("File upload failed:", error);
-//             }
-//           }
-//         };
-      
-//         getImage();
-      
-//         // Also update categories and username.
-//         // It’s better to update them separately or inside a setPost call if they depend on the file upload.
-//        }, [file]);
-//    useEffect(() => {
-//      setPost(prevPost => ({
-//     ...prevPost,
-//     categories: location.search?.split('=')[1] || 'All',
-//     username: account.username
-//   }));
-// }, [account.username, location.search]);
-  
+
 
     const handleChange=(e)=>{
         setPost({ ...post,[e.target.name]:e.target.value});
