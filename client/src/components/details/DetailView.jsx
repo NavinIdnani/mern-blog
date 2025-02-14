@@ -55,6 +55,9 @@ const DetailView=()=>{
     const[post,setPost]=useState({});
 
     const { id }=useParams();
+
+    console.log("Fetched id from URL:", id);
+    
     const{account}=useContext(DataContext);
 
     const navigate=useNavigate();
