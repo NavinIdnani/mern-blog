@@ -96,7 +96,9 @@ const DetailView=()=>{
             <Heading>{post.title}</Heading>
 
             <Author>
+            <Link to={`/?username=${post.username}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <Typography>Author: <Box component="span" style={{fontWeight:600}}>{post.username}</Box></Typography>
+            </Link>
                 <Typography style={{marginLeft:'auto'}}>{new Date(post.createdDate).toDateString()}</Typography>
             </Author>
 
