@@ -82,7 +82,7 @@ const DetailView=()=>{
     }
     return(
         <Container>
-            <Image src={url} alt="blog"/>
+            <Image src={post.picture || url} alt="blog"/>
 
             <Box style={{float:'right'}}>
             {
