@@ -47,7 +47,7 @@ function App() {
                     <Route path='/create' element={<CreatePost />} />
                 </Route>
                 <Route path='/details/:id' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
-                    <Route path='/details/:id' element={<DetailView />} />
+                    <Route index element={<DetailView />} />
                 </Route>
                 <Route path='/update/:id' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
                     <Route path='/update/:id' element={<Update />} />
