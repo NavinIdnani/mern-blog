@@ -27,15 +27,30 @@ export const getAllPosts =async(request,response)=>{
         return response.status(500).json({msg:Error.message})
     }
 }
-export const getPost=async(request,response)=>{
-    try{
-        const post=await Post.findById(request.params.id);
 
-        return response.status(200).json(post);
-    }catch(error){
-        return response.status(500).json({msg:error.message});
-    }
-}
+export const getPost = async (request, response) => {
+  console.log('getPost called with ID:', request.params.id);
+  try {
+    const post = await Post.findById(request.params.id);
+    console.log('Found post:', post); // Check if it's null or an actual document
+    if (!post) return response.status(404).json({ msg: 'Post not found' });
+    return response.status(200).json(post);
+  } catch (error) {
+    console.error('Error in getPost:', error);
+    return response.status(500).json({ msg: error.message });
+  }
+};
+
+
+// export const getPost=async(request,response)=>{
+//     try{
+//         const post=await Post.findById(request.params.id);
+
+//         return response.status(200).json(post);
+//     }catch(error){
+//         return response.status(500).json({msg:error.message});
+//     }
+// }
 
 export const updatePost=async(request,response)=>{
     try{
