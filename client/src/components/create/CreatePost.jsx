@@ -55,6 +55,8 @@ const initialPost ={
 
 }
 
+
+
 const CreatePost=()=>{
 
  
@@ -69,39 +71,38 @@ const CreatePost=()=>{
 
     const url=post.picture ? post.picture : 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
 
-
-
-useEffect(() => {
-  const getImage = async () => {
-    if (file) {
-      const data = new FormData();
-      data.append("name", file.name);
-      data.append("file", file);
+  useEffect(() => {
+        const getImage = async () => {
+          if (file) {
+            const data = new FormData();
+            data.append("name", file.name);
+            data.append("file", file);
       
-      try {
-        const response = await API.uploadFile(data);
+            try {
+              const response = await API.uploadFile(data);
+              console.log("Upload response:", response);
+      
+              // Update state with the new image URL
+              setPost(prevPost => ({
+                ...prevPost,
+                picture: response.data, // assuming response.data is the image URL
+              }));
+            } catch (error) {
+              console.error("File upload failed:", error);
+            }
+          }
+        };
+      
+        getImage();
+      
+        // Also update categories and username.
+        // It’s better to update them separately or inside a setPost call if they depend on the file upload.
         setPost(prevPost => ({
           ...prevPost,
-          picture: response.data
+          categories: location.search?.split('=')[1] || 'All',
+          username: account.username,
         }));
-      } catch (error) {
-        console.error("File upload failed:", error);
-      }
-    }
-  };
-
-  getImage();
-
-  // Update categories and username using setPost:
-  setPost(prevPost => ({
-    ...prevPost,
-    categories: location.search?.split('=')[1] || 'All',
-    username: account.username,
-  }));
-}, [file, account.username, location.search]);
-
-
- 
+      }, [file]);
 
 
     const handleChange=(e)=>{
