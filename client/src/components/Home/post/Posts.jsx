@@ -9,7 +9,7 @@ import { useSearchParams ,Link} from 'react-router-dom';
 import Post from './Post';
 
 const Posts=()=>{
-    const [posts,setPosts]=useState([]);
+    const [posts,getPosts]=useState([]);
 
     const[searchParams]=useSearchParams();
     const category=searchParams.get('category');
@@ -18,7 +18,7 @@ const Posts=()=>{
         const fetchData=async()=>{
             let response=await API.getAllPosts({ category:category || ''});
             if(response.isSuccess){
-                setPosts(response.data);
+                getPosts(response.data);
             }
         }
         fetchData();
