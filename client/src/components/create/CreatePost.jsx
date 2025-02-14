@@ -69,58 +69,77 @@ const CreatePost=()=>{
 
     const url=post.picture ? post.picture : 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
 
-    useEffect(() => {
-        const getImage = async () => {
-          if (file) {
-            const data = new FormData();
-            data.append("name", file.name);
-            data.append("file", file);
-      
-            try {
-              const response = await API.uploadFile(data);
-              console.log("Upload response:", response);
-      
-              // Update state with the new image URL
-              setPost(prevPost => ({
-                ...prevPost,
-                picture: response.data, // assuming response.data is the image URL
-              }));
-            } catch (error) {
-              console.error("File upload failed:", error);
-            }
-          }
-        };
-      
-        getImage();
-      
-        // Also update categories and username.
-        // It’s better to update them separately or inside a setPost call if they depend on the file upload.
-       }, [file]);
-   useEffect(() => {
-     setPost(prevPost => ({
-    ...prevPost,
-    categories: location.search?.split('=')[1] || 'All',
-    username: account.username
-  }));
-}, [account.username, location.search]);
-    // useEffect(()=>{
-    //     const getImage =async()=>{
-    //         if(file){
-    //             const data=new FormData();
-    //             data.append("name",file.name);
-    //             data.append("file",file);
+useEffect(() => {
+    setPost((prevPost) => ({
+      ...prevPost,
+      username: account.username,
+      categories: location.search?.split('=')[1] || 'All',
+      createdDate: new Date(), // or keep existing if you prefer
+    }));
+  }, [account.username, location.search]);
 
-    //             //API Call
-    //             const response= await API.uploadFile(data);
-    //             post.picture= response.data;
+  useEffect(() => {
+    const getImage = async () => {
+      if (file) {
+        const data = new FormData();
+        data.append('name', file.name);
+        data.append('file', file);
 
-    //         }
-    //     }
-    //     getImage();
-    //     post.categories=location.search?.split('=')[1] || 'All';
-    //     post.username=account.username;
+        try {
+          const response = await API.uploadFile(data);
+          console.log('Upload response:', response);
+          setPost((prevPost) => ({
+            ...prevPost,
+            picture: response.data, // The URL returned by your API
+          }));
+        } catch (error) {
+          console.error('File upload failed:', error);
+        }
+      }
+    };
+    getImage();
+  }, [file]);
 
-    // },[file])
+
+ 
+
+
+ 
+//     useEffect(() => {
+//         const getImage = async () => {
+//           if (file) {
+//             const data = new FormData();
+//             data.append("name", file.name);
+//             data.append("file", file);
+      
+//             try {
+//               const response = await API.uploadFile(data);
+//               console.log("Upload response:", response);
+      
+//               // Update state with the new image URL
+//               setPost(prevPost => ({
+//                 ...prevPost,
+//                 picture: response.data, // assuming response.data is the image URL
+//               }));
+//             } catch (error) {
+//               console.error("File upload failed:", error);
+//             }
+//           }
+//         };
+      
+//         getImage();
+      
+//         // Also update categories and username.
+//         // It’s better to update them separately or inside a setPost call if they depend on the file upload.
+//        }, [file]);
+//    useEffect(() => {
+//      setPost(prevPost => ({
+//     ...prevPost,
+//     categories: location.search?.split('=')[1] || 'All',
+//     username: account.username
+//   }));
+// }, [account.username, location.search]);
+  
 
     const handleChange=(e)=>{
         setPost({ ...post,[e.target.name]:e.target.value});
