@@ -40,6 +40,10 @@ app.get('*',(req,res)=> res.sendFile(path.join(__dirname,'/client/dist/index.htm
 const PORT = process.env.PORT || 8000;
 app.listen(PORT,()=>console.log(`Server is running successfully on PORT ${PORT}`));
 
+app.use('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 const USERNAME=process.env.DB_USERNAME;
 const PASSWORD=process.env.DB_PASSWORD;
 
