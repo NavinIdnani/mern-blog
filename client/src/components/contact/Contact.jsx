@@ -2,7 +2,7 @@ import { Box, styled, Typography, Link } from '@mui/material';
 import { GitHub, Instagram, Email } from '@mui/icons-material';
 
 const Banner = styled(Box)`
-    background-image: url(http://mrtaba.ir/image/bg2.jpg);
+    background-image: url(https://img.freepik.com/free-photo/programming-background-with-person-working-with-codes-computer_23-2150010128.jpg?t=st=1739618026~exp=1739621626~hmac=bbb3dbe2e3b95096ad6cc1d5b0ceb251c5ad8ca5a3e4b55e5512cb92a0582833&w=996);
     width: 100%;
     height: 50vh;
     background-position: left 0px top -100px;
