@@ -20,7 +20,9 @@ export const uploadImage =(request,response)=>{
     if(!request.file){
         return response.status(404).json({msg:"File not found "});
     }
-const imageUrl = `${request.protocol}://${request.get('host')}/file/${request.file.filename}`;
+
+    const protocol = process.env.NODE_ENV === 'production' ? 'https' : request.protocol;
+    const imageUrl = `${request.protocol}://${request.get('host')}/file/${request.file.filename}`;
     // const imageUrl = `${url}/file/${request.file.filename}`;
 
     return response.status(200).json(imageUrl);
