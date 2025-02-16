@@ -18,7 +18,7 @@ const axiosInstance=axios.create({
 
 axiosInstance.interceptors.request.use(
     function(config){
-        if(config){
+        if(config.TYPE){
             if(config.TYPE.params || config.TYPE.query){
                 if(config.TYPE.params){
                     config.params=config.TYPE.params;
