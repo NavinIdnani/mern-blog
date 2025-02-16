@@ -18,13 +18,24 @@ const __dirname =path.dirname(__filename);
 
 const app = express();
 
+const allowedOrigins = [
+  'https://mern-blog-ntal.onrender.com',
+  'http://localhost:5173' // Optional: Keep for local testing
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 // app.use(express.json());
 
 // app.use(cors());
-app.use(cors({
-   origin: process.env.CLIENT_URL || '*'
-}));
+// app.use(cors({
+//    origin: process.env.CLIENT_URL || '*'
+// }));
 
 app.use(bodyParser.json({extended:true}))
 app.use(bodyParser.urlencoded({extended:true}))
