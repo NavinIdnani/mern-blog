@@ -83,6 +83,13 @@ const DetailView = () => {
         fetchPost();
     }, [id]); // Add id to dependency array
 
+    const deleteBlog=async()=>{
+        let response=await API.deletePost(post._id);
+        if(response.isSuccess){
+            navigate('/');
+        }
+    }
+    
     return (
         <Container>
             <Image src={post.picture || defaultImage} alt="blog" />
