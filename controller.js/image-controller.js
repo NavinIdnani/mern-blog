@@ -2,7 +2,7 @@
 import grid from 'gridfs-stream';
 import mongoose from 'mongoose';
 
-const url=  process.env.VITE_API_BASE_URL || 'http://localhost:8000' ;
+const url=  process.env.VITE_API_BASE_URL || '' ;
 
 let gfs,gridfsBucket;
 
@@ -20,8 +20,8 @@ export const uploadImage =(request,response)=>{
     if(!request.file){
         return response.status(404).json({msg:"File not found "});
     }
-
-    const imageUrl = `${url}/file/${request.file.filename}`;
+const imageUrl = `${request.protocol}://${request.get('host')}/file/${request.file.filename}`;
+    // const imageUrl = `${url}/file/${request.file.filename}`;
 
     return response.status(200).json(imageUrl);
 }
