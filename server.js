@@ -19,12 +19,13 @@ const __dirname =path.dirname(__filename);
 const app = express();
 
 
-app.use(express.json());
+// app.use(express.json());
 
 // app.use(cors());
 app.use(cors({
    origin: process.env.CLIENT_URL || '*'
 }));
+
 app.use(bodyParser.json({extended:true}))
 app.use(bodyParser.urlencoded({extended:true}))
 
