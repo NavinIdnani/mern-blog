@@ -2,7 +2,7 @@
 import grid from 'gridfs-stream';
 import mongoose from 'mongoose';
 
-const url= import.meta.env.VITE_API_BASE_URL || '';
+const url= '';
 
 let gfs,gridfsBucket;
 
