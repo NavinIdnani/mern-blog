@@ -4,7 +4,7 @@ import axios from "axios";
 import { API_NOTIFICATION_MESSAGES ,SERVICE_URLS} from "../constants/config";
 import { getAccessToken,getType } from "../utils/common-utils";
 
-const API_URL= import.meta.env.VITE_API_BASE_URL;
+const API_URL= import.meta.env.VITE_API_BASE_URL || 'https://mern-blog-backend.onrender.com';
 // || 'http://localhost:8000'
 const axiosInstance=axios.create({
     baseURL:API_URL,
