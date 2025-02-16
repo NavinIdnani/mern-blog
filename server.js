@@ -19,7 +19,7 @@ const __dirname =path.dirname(__filename);
 const app = express();
 
 const allowedOrigins = [
-  'https://mern-blog-ntal.onrender.com'
+  'http://localhost:5173'
 ];
 
 app.use(cors({
