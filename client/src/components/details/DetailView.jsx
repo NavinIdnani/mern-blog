@@ -83,6 +83,10 @@ const DetailView = () => {
         fetchPost();
     }, [id]); // Add id to dependency array
 
+    console.log("Logged in user:", account.username);
+    console.log("Post author:", post.username);
+
+    
     const deleteBlog=async()=>{
         let response=await API.deletePost(post._id);
         if(response.isSuccess){
